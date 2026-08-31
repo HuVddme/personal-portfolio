@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
-import { FaBrain, FaRobot, FaMoneyBillTrendUp } from "react-icons/fa6";
+import { FaMusic, FaRobot, FaMoneyBillTrendUp } from "react-icons/fa6";
 import { projects } from "../data/portfolio.js";
 import styles from "./Projects.module.css";
 
 const iconMap = {
-  brain: FaBrain,
+  music: FaMusic,
   finance: FaMoneyBillTrendUp,
   robot: FaRobot,
 };
@@ -55,7 +55,16 @@ export default function Projects() {
               >
                 <div className={styles.cardTop}>
                   <span className={styles.icon}>
-                    {Icon && <Icon size={22} />}
+                    {project.image ? (
+                      <img
+                        className={styles.projectLogo}
+                        src={project.image}
+                        alt=""
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      Icon && <Icon size={22} />
+                    )}
                   </span>
                   <FiArrowUpRight className={styles.arrow} />
                 </div>

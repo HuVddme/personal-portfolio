@@ -48,12 +48,21 @@ export const experiences = [
 
 export const projects = [
   {
+    name: "Seasoned Music",
+    icon: "music",
+    tagline: "Your Spotify listening, in context",
+    description:
+      "A privacy-first listening history analyzer that reveals how music changes across seasons and places, then turns those patterns into private Spotify playlists.",
+    tech: ["Next.js", "TypeScript", "Spotify Web API"],
+    href: "https://seasoned-music.vercel.app/",
+  },
+  {
     name: "Buddy's Brain",
-    icon: "brain",
+    image: "/buddy-bison-logo.png",
     tagline: "Winner — BisonBytes AI Track Hackathon",
     description:
       "An AI-powered educational assistant that retrieves answers 3x faster through semantic vector search and GPT-4o integration, wrapped in an accessible, responsive React interface.",
-    tech: ["React", "FastAPI", "Vercel"],
+    tech: ["React", "FastAPI", "MongoDB"],
     href: "https://buddys-brain-alpha.vercel.app/",
   },
   {
@@ -62,7 +71,7 @@ export const projects = [
     tagline: "Financial literacy, made personal",
     description:
       "An interactive financial literacy app that uses an LLM API to deliver personalized financial advice, simplifying complex topics and increasing user engagement by 30%.",
-    tech: ["Python", "React", "Vercel"],
+    tech: ["Django", "LangChain", "OpenAI API"],
     href: "https://finbuddy.vercel.app/",
   },
   {
@@ -71,7 +80,7 @@ export const projects = [
     tagline: "Real-time robot control interface",
     description:
       "A web interface for controlling and monitoring a robot in real time, focused on a clean, responsive control panel and a smooth operator experience.",
-    tech: ["React", "Vercel"],
+    tech: ["React", "TypeScript", "FastAPI"],
     href: "https://robocontrol-g20.vercel.app/",
   },
 ];
