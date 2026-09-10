@@ -1,17 +1,13 @@
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { experiences } from "../data/portfolio.js";
+import { fadeUp } from "../motion.js";
 import styles from "./Experience.module.css";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
 
 export default function Experience() {
   return (
     <section id="experience" className={`section ${styles.experience}`}>
       <div className="container">
-        <motion.span
+        <m.span
           className="section__eyebrow"
           initial="hidden"
           whileInView="show"
@@ -19,8 +15,8 @@ export default function Experience() {
           variants={fadeUp}
         >
           Experience
-        </motion.span>
-        <motion.h2
+        </m.span>
+        <m.h2
           className="section__title"
           initial="hidden"
           whileInView="show"
@@ -28,11 +24,11 @@ export default function Experience() {
           variants={fadeUp}
         >
           Where I&apos;ve worked
-        </motion.h2>
+        </m.h2>
 
         <ol className={styles.timeline}>
           {experiences.map((item, index) => (
-            <motion.li
+            <m.li
               key={`${item.company}-${index}`}
               className={styles.item}
               initial="hidden"
@@ -58,7 +54,7 @@ export default function Experience() {
                   ))}
                 </ul>
               </div>
-            </motion.li>
+            </m.li>
           ))}
         </ol>
       </div>

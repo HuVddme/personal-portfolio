@@ -33,12 +33,12 @@
   height: 15px;
   border-radius: 50%;
   background: var(--color-bg);
-  border: 2px solid var(--color-text);
+  border: 2px solid var(--color-accent);
   transition: background-color var(--transition);
 }
 
 .item:hover .dot {
-  background: var(--color-text);
+  background: var(--color-accent);
 }
 
 .card {
@@ -50,7 +50,7 @@
 }
 
 .card:hover {
-  border-color: var(--color-text-subtle);
+  border-color: rgba(184, 255, 90, 0.5);
   transform: translateY(-3px);
 }
 

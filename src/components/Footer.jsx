@@ -32,8 +32,8 @@ export default function Footer() {
                 key={social.id}
                 href={social.href}
                 aria-label={social.label}
-                target="_blank"
-                rel="noreferrer"
+                target={social.external === false ? undefined : "_blank"}
+                rel={social.external === false ? undefined : "noreferrer"}
               >
                 {Icon && <Icon size={18} />}
               </a>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { navLinks, profile } from "../data/portfolio.js";
 import styles from "./Navbar.module.css";
@@ -7,6 +7,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
+  const linksRef = useRef(null);
+  const toggleRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -27,32 +29,72 @@ export default function Navbar() {
           if (entry.isIntersecting) setActive(entry.target.id);
         });
       },
-      { rootMargin: "-45% 0px -50% 0px" }
+      { rootMargin: "-45% 0px -50% 0px" },
     );
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const links = [...linksRef.current.querySelectorAll("a[href]")];
+    document.body.style.overflow = "hidden";
+    links[0]?.focus();
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab" || links.length === 0) return;
+      const first = links[0];
+      const last = links.at(-1);
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
   const handleNav = (event, id) => {
     event.preventDefault();
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    window.history.replaceState(null, "", `#${id}`);
     setOpen(false);
   };
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
-      <nav className={`container ${styles.nav}`}>
+      <nav className={`container ${styles.nav}`} aria-label="Primary navigation">
         <a
           href="#home"
           className={styles.brand}
-          onClick={(e) => handleNav(e, "home")}
+          onClick={(event) => handleNav(event, "home")}
         >
           {profile.firstName}
           <span className={styles.brandDot}>.</span>
         </a>
 
-        <ul className={`${styles.links} ${open ? styles.open : ""}`}>
+        <ul
+          id="primary-navigation"
+          ref={linksRef}
+          className={`${styles.links} ${open ? styles.open : ""}`}
+        >
           {navLinks.map((link) =>
             link.external ? (
               <li key={link.id}>
@@ -73,21 +115,24 @@ export default function Navbar() {
                   className={`${styles.link} ${
                     active === link.id ? styles.active : ""
                   }`}
-                  onClick={(e) => handleNav(e, link.id)}
+                  aria-current={active === link.id ? "page" : undefined}
+                  onClick={(event) => handleNav(event, link.id)}
                 >
                   {link.label}
                 </a>
               </li>
-            )
+            ),
           )}
         </ul>
 
         <button
+          ref={toggleRef}
           type="button"
           className={styles.toggle}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          onClick={() => setOpen((prev) => !prev)}
+          aria-controls="primary-navigation"
+          onClick={() => setOpen((previous) => !previous)}
         >
           {open ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>

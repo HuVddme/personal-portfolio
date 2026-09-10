@@ -1,17 +1,13 @@
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { profile } from "../data/portfolio.js";
+import { fadeUp } from "../motion.js";
 import styles from "./About.module.css";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
 
 export default function About() {
   return (
     <section id="about" className="section">
       <div className="container">
-        <motion.span
+        <m.span
           className="section__eyebrow"
           initial="hidden"
           whileInView="show"
@@ -19,21 +15,31 @@ export default function About() {
           variants={fadeUp}
         >
           About
-        </motion.span>
+        </m.span>
 
         <div className={styles.grid}>
-          <motion.div
+          <m.div
             className={styles.imageWrap}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeUp}
           >
-            <img src={profile.headshot} alt={profile.name} loading="lazy" />
+            <picture>
+              <source srcSet="/headshot.webp" type="image/webp" />
+              <img
+                src={profile.headshot}
+                alt={`Portrait of ${profile.name}`}
+                width="900"
+                height="1350"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div className={styles.imageBorder} aria-hidden="true" />
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             className={styles.content}
             initial="hidden"
             whileInView="show"
@@ -48,7 +54,15 @@ export default function About() {
                 {paragraph}
               </p>
             ))}
-          </motion.div>
+            <dl className={styles.facts}>
+              {profile.facts.map((fact) => (
+                <div key={fact.label}>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </m.div>
         </div>
       </div>
     </section>

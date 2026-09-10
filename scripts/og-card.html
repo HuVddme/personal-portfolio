@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio social preview</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; margin: 0; }
+      body {
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: #000;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .card {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        color: #f5f5f5;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(184, 255, 90, .16), transparent 42%),
+          linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px),
+          #000;
+        background-size: auto, 64px 64px, 64px 64px, auto;
+        padding: 72px 84px;
+      }
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: #b8ff5a;
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 8px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #b8ff5a;
+      }
+      h1 {
+        margin: 112px 0 16px;
+        font-size: 82px;
+        line-height: .95;
+        letter-spacing: -4px;
+      }
+      .specialization {
+        margin: 0;
+        color: #b8ff5a;
+        font: italic 42px Georgia, "Times New Roman", serif;
+      }
+      footer {
+        position: absolute;
+        inset: auto 84px 66px;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #2c2c2c;
+        padding-top: 28px;
+        color: #a3a3a3;
+        font-size: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="eyebrow">PORTFOLIO · 2026</div>
+      <h1>Valentine Ezikeoha</h1>
+      <p class="specialization">AI/ML &amp; Full-Stack Engineering</p>
+      <footer>
+        <span>Howard University CS graduate</span>
+        <span>Washington, D.C.</span>
+      </footer>
+    </main>
+  </body>
+</html>

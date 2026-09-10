@@ -27,7 +27,7 @@
 }
 
 .brandDot {
-  color: var(--color-text-subtle);
+  color: var(--color-accent);
 }
 
 .links {
@@ -78,8 +78,8 @@
 }
 
 .linkExternal:hover {
-  border-color: var(--color-text);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
 }
 
 .linkExternal::after {
@@ -113,6 +113,8 @@
     opacity: 0;
     pointer-events: none;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    max-height: calc(100vh - 4.5rem);
+    overflow-y: auto;
   }
 
   .links.open {
@@ -135,5 +137,14 @@
 
   .link::after {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .links,
+  .link,
+  .link::after {
+    transition-duration: 0.01ms;
   }
 }

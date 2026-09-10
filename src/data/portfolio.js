@@ -1,14 +1,22 @@
 export const profile = {
   name: "Valentine Ezikeoha",
   firstName: "Valentine",
-  roles: ["Software Engineer", "Problem Solver"],
+  specialization: "AI/ML & Full-Stack Engineering",
+  credential: "Howard University CS graduate",
+  availability: "Open to software engineering opportunities",
   location: "Washington, D.C.",
   headshot: "/headshot.jpg",
   // Drop your resume PDF into the `public/` folder and point this to it.
   resume: "/resume.pdf",
   resumeFileName: "Valentine-Ezikeoha-Resume.pdf",
   about: [
-    "I'm a software engineer driven by a genuine curiosity for AI/ML and full-stack development, and by the belief that technology can be a real force for change. I love the process of building, learning, and turning fresh ideas into solutions that tackle real-world problems."
+    "I'm a Howard University Computer Science graduate who builds AI-powered products and dependable full-stack systems. I enjoy turning ambiguous problems into useful, accessible software.",
+    "My work spans production automation at Intuit, multilingual AI research, and products that connect modern interfaces with thoughtful backend systems.",
+  ],
+  facts: [
+    { label: "Education", value: "Howard University, B.S. Computer Science '26" },
+    { label: "Experience", value: "Intuit + AI/ML research" },
+    { label: "Focus", value: "AI products, full-stack systems, developer tooling" },
   ],
 };
 
@@ -50,46 +58,60 @@ export const projects = [
   {
     name: "Seasoned Music",
     icon: "music",
+    preview: "/projects/seasoned-music.jpg",
+    year: "2026",
+    status: "Active",
     tagline: "Your Spotify listening, in context",
     description:
-      "A privacy-first listening history analyzer that reveals how music changes across seasons and places, then turns those patterns into private Spotify playlists.",
+      "Designed and built a privacy-first analyzer that maps Spotify listening across seasons and places, then turns those patterns into private playlists.",
     tech: ["Next.js", "TypeScript", "Spotify Web API"],
     href: "https://seasoned-music.vercel.app/",
   },
   {
     name: "Buddy's Brain",
-    image: "/buddy-bison-logo.png",
+    logo: "/buddy-bison-logo.png",
+    preview: "/projects/buddys-brain.jpg",
+    year: "2025",
+    status: "Hackathon winner",
     tagline: "Winner — BisonBytes AI Track Hackathon",
     description:
       "An AI-powered educational assistant that retrieves answers 3x faster through semantic vector search and GPT-4o integration, wrapped in an accessible, responsive React interface.",
     tech: ["React", "FastAPI", "MongoDB"],
     href: "https://buddys-brain-alpha.vercel.app/",
+    repo: "https://github.com/HuVddme/Buddys-Brain",
   },
   {
     name: "FinBuddy",
     icon: "finance",
+    preview: "/projects/finbuddy.jpg",
+    year: "2023",
+    status: "Independent project",
     tagline: "Financial literacy, made personal",
     description:
-      "An interactive financial literacy app that uses an LLM API to deliver personalized financial advice, simplifying complex topics and increasing user engagement by 30%.",
-    tech: ["Django", "LangChain", "OpenAI API"],
+      "An authenticated budgeting product for creating budgets, understanding spending patterns, and tracking progress toward financial goals.",
+    tech: ["Next.js", "Clerk", "Tailwind CSS"],
     href: "https://finbuddy.vercel.app/",
   },
   {
     name: "RoboControl",
     icon: "robot",
+    preview: "/projects/robocontrol.jpg",
+    year: "2026",
+    status: "Team project",
     tagline: "Real-time robot control interface",
     description:
       "A web interface for controlling and monitoring a robot in real time, focused on a clean, responsive control panel and a smooth operator experience.",
     tech: ["React", "TypeScript", "FastAPI"],
     href: "https://robocontrol-g20.vercel.app/",
+    repo: "https://github.com/HuVddme/RobocontrolG20",
   },
 ];
 
 export const navLinks = [
   { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
   { id: "resume", label: "Resume", href: "/resume.pdf", external: true },
 ];
@@ -99,8 +121,8 @@ export const socials = [
     id: "email",
     label: "Email",
     value: "valentineezikeoha@gmail.com",
-    // Opens Gmail's compose window in a new tab (see note in Contact/Footer).
-    href: "https://mail.google.com/mail/?view=cm&fs=1&to=valentineezikeoha@gmail.com",
+    href: "mailto:valentineezikeoha@gmail.com",
+    external: false,
     icon: "email",
   },
   {

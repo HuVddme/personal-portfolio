@@ -1,90 +1,55 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { FiArrowDown, FiArrowUpRight } from "react-icons/fi";
-import { profile } from "../data/portfolio.js";
+import * as m from "framer-motion/m";
+import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import { profile, projects } from "../data/portfolio.js";
+import { fadeUp, stagger } from "../motion.js";
 import styles from "./Hero.module.css";
 
-function useTypewriter(words, { typeSpeed = 90, deleteSpeed = 45, pause = 1400 } = {}) {
-  const [text, setText] = useState("");
-  const [wordIndex, setWordIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    const current = words[wordIndex % words.length];
-    let timeout;
-
-    if (!deleting && text === current) {
-      timeout = setTimeout(() => setDeleting(true), pause);
-    } else if (deleting && text === "") {
-      setDeleting(false);
-      setWordIndex((prev) => (prev + 1) % words.length);
-    } else {
-      timeout = setTimeout(() => {
-        setText((prev) =>
-          deleting
-            ? current.slice(0, prev.length - 1)
-            : current.slice(0, prev.length + 1)
-        );
-      }, deleting ? deleteSpeed : typeSpeed);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [text, deleting, wordIndex, words, typeSpeed, deleteSpeed, pause]);
-
-  return text;
-}
-
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
 export default function Hero() {
-  const typed = useTypewriter(profile.roles);
-
+  const featuredProject = projects[0];
   const scrollTo = (id) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section id="home" className={styles.hero}>
-      <motion.div
+      <m.div
         className={`container ${styles.inner}`}
-        variants={container}
+        variants={stagger}
         initial="hidden"
         animate="show"
       >
-        <motion.p className={styles.greeting} variants={item}>
+        <m.p className={styles.status} variants={fadeUp}>
+          <span aria-hidden="true" />
+          {profile.availability}
+        </m.p>
+
+        <m.p className={styles.greeting} variants={fadeUp}>
           Hello, I&apos;m
-        </motion.p>
+        </m.p>
 
-        <motion.h1 className={styles.name} variants={item}>
+        <m.h1 className={styles.name} variants={fadeUp}>
           {profile.name}
-        </motion.h1>
+        </m.h1>
 
-        <motion.div className={styles.typewriter} variants={item}>
-          <span>{typed}</span>
-          <span className={styles.cursor} aria-hidden="true" />
-        </motion.div>
+        <m.p className={styles.specialization} variants={fadeUp}>
+          {profile.specialization}
+        </m.p>
 
-        <motion.p className={styles.tagline} variants={item}>
-          Software engineer passionate about AI/ML and full-stack development —
+        <m.p className={styles.tagline} variants={fadeUp}>
+          Software engineer passionate about AI/ML and full-stack development,
           building technology that solves real problems and drives meaningful
           change.
-        </motion.p>
+        </m.p>
 
-        <motion.div className={styles.actions} variants={item}>
+        <m.p className={styles.credentials} variants={fadeUp}>
+          {profile.credential} <span>•</span> {profile.location}
+        </m.p>
+
+        <m.div className={styles.actions} variants={fadeUp}>
           <button
             className="btn btn--primary"
             onClick={() => scrollTo("contact")}
           >
-            Get in touch <FiArrowUpRight />
+            Get in touch <FiArrowUpRight aria-hidden="true" />
           </button>
           <a
             className="btn btn--ghost"
@@ -94,16 +59,23 @@ export default function Hero() {
           >
             View resume
           </a>
-        </motion.div>
-      </motion.div>
+        </m.div>
 
-      <button
-        className={styles.scrollHint}
-        onClick={() => scrollTo("about")}
-        aria-label="Scroll to about section"
-      >
-        <FiArrowDown />
-      </button>
+        <m.a
+          className={styles.featured}
+          href={featuredProject.href}
+          target="_blank"
+          rel="noreferrer"
+          variants={fadeUp}
+        >
+          <span className={styles.featuredLabel}>Featured project</span>
+          <span className={styles.featuredBody}>
+            <strong>{featuredProject.name}</strong>
+            <small>{featuredProject.tagline}</small>
+          </span>
+          <FiArrowRight aria-hidden="true" />
+        </m.a>
+      </m.div>
     </section>
   );
 }

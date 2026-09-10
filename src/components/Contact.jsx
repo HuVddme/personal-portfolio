@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { FiMail, FiArrowUpRight } from "react-icons/fi";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa6";
 import { socials } from "../data/portfolio.js";
+import { fadeUp } from "../motion.js";
 import styles from "./Contact.module.css";
 
 const iconMap = {
@@ -10,16 +11,11 @@ const iconMap = {
   github: FaGithub,
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
 export default function Contact() {
   return (
     <section id="contact" className={`section ${styles.contact}`}>
       <div className="container">
-        <motion.div
+        <m.div
           className={styles.intro}
           initial="hidden"
           whileInView="show"
@@ -32,9 +28,9 @@ export default function Contact() {
             I&apos;m always open to new opportunities, collaborations, and a good
             conversation about technology.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className={styles.grid}
           initial="hidden"
           whileInView="show"
@@ -48,8 +44,8 @@ export default function Contact() {
                 key={social.id}
                 href={social.href}
                 className={styles.card}
-                target="_blank"
-                rel="noreferrer"
+                target={social.external === false ? undefined : "_blank"}
+                rel={social.external === false ? undefined : "noreferrer"}
               >
                 <span className={styles.cardIcon}>
                   {Icon && <Icon size={20} />}
@@ -62,7 +58,7 @@ export default function Contact() {
               </a>
             );
           })}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
