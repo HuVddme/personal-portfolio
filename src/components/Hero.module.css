@@ -68,8 +68,8 @@
 .specialization {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(1.35rem, 3.5vw, 2.05rem);
-  color: var(--color-text);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--color-text-muted);
 }
 
 .tagline {
@@ -97,53 +97,70 @@
   margin-top: 2rem;
 }
 
-.featured {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 1.15rem;
-  width: min(100%, 39rem);
-  margin-top: 2.25rem;
-  padding: 1rem 1.15rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  background: rgba(17, 17, 17, 0.75);
-  transition: border-color var(--transition), transform var(--transition),
-    background-color var(--transition);
-}
-
-.featured:hover {
-  border-color: var(--color-accent);
-  background: #161616;
-  transform: translateY(-2px);
-}
-
-.featuredLabel {
-  color: var(--color-accent);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.featuredBody {
+.roleRow {
   display: flex;
-  flex-direction: column;
-  border-left: 1px solid var(--color-border);
-  padding-left: 1.15rem;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.35rem;
 }
 
-.featuredBody strong {
-  font-size: 0.98rem;
+.role {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  color: var(--color-text);
 }
 
-.featuredBody small {
+.typingToggle {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: transparent;
   color: var(--color-text-subtle);
-  font-size: 0.78rem;
 }
 
-.featured svg {
+.typingToggle:hover {
   color: var(--color-accent);
+}
+
+.typingStack {
+  display: grid;
+}
+
+.typingStack > span {
+  grid-area: 1 / 1;
+}
+
+.reserve {
+  visibility: hidden;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  margin-left: 0.08em;
+  background: var(--color-accent);
+  animation: blink 1s step-end infinite;
+}
+
+.screenReaderOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; }
 }
 
 @media (max-width: 640px) {
@@ -152,16 +169,4 @@
     padding-block: 7rem 4rem;
   }
 
-  .featured {
-    grid-template-columns: 1fr auto;
-  }
-
-  .featuredLabel {
-    grid-column: 1 / -1;
-  }
-
-  .featuredBody {
-    padding-left: 0;
-    border-left: 0;
-  }
 }

@@ -1,10 +1,11 @@
 export const profile = {
   name: "Valentine Ezikeoha",
   firstName: "Valentine",
+  roles: ["Software Engineer", "Problem Solver"],
   specialization: "AI/ML & Full-Stack Engineering",
   credential: "Howard University CS graduate",
   availability: "Open to software engineering opportunities",
-  location: "Washington, D.C.",
+  location: "New Jersey",
   headshot: "/headshot.jpg",
   // Drop your resume PDF into the `public/` folder and point this to it.
   resume: "/resume.pdf",
@@ -22,14 +23,20 @@ export const profile = {
 
 export const experiences = [
   {
-    role: "Undergraduate Researcher",
+    role: "Machine Learning Researcher",
     company: "Howard University Research",
     location: "Washington, D.C.",
     period: "Sept 2025 – May 2026",
+    focus: "Speech-based Alzheimer's detection and severity assessment",
+    summary:
+      "Developed and evaluated a multilingual audio-and-text pipeline to predict Mini-Mental State Examination (MMSE) scores, a 0–30 measure of cognitive function, from spoken responses. The research explores speech as a signal for cognitive screening and monitoring.",
     points: [
-      "Improved Alzheimer's prediction models by training ML models on acoustic-linguistic features, reducing RMSE by 25%+ over baseline.",
-      "Engineered multimodal machine learning pipelines integrating speech audio and natural language features for robust multilingual inference.",
+      "Combined five experimental cohorts from ADReSS, ADReSSo, ADReSS-M, and TAUKADIAL: approximately 659 labeled participants speaking English, Greek, and Mandarin, across different speaking tasks and recording conditions.",
+      "Evaluated XLM-RoBERTa, ModernBERT, and mmBERT on automatically generated transcripts alongside AST, SSAST, and WavLM audio representations. The strongest standalone text model, mmBERT, reached approximately 4.19 RMSE; the strongest audio-only models reached 5.47–5.56.",
+      "Compared weighted late, MLP, gated, uncertainty-aware, and embedding-level fusion. Uncertainty-aware fusion achieved approximately 4.04 RMSE, improving on standalone text by combining linguistic patterns with complementary speech acoustics.",
+      "Used 5-fold speaker-level GroupKFold cross-validation to keep each participant's recordings within a single fold and prevent speaker leakage. Tuned label standardization, Smooth L1 loss, learning rates, audio augmentation, and regularization to improve robustness.",
     ],
+    tech: ["Python", "PyTorch", "Hugging Face Transformers", "Torchaudio", "scikit-learn"],
   },
   {
     role: "Software Engineer Intern",
@@ -109,9 +116,9 @@ export const projects = [
 
 export const navLinks = [
   { id: "home", label: "Home" },
+  { id: "about", label: "About" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
-  { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
   { id: "resume", label: "Resume", href: "/resume.pdf", external: true },
 ];

@@ -87,6 +87,35 @@
   white-space: nowrap;
 }
 
+.focus {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.summary {
+  color: var(--color-text-muted);
+  font-size: 0.97rem;
+  margin-bottom: 1.25rem;
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin-top: 1.25rem;
+}
+
+.tech li {
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+}
+
 .points {
   list-style: none;
   padding: 0;

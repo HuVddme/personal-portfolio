@@ -25,17 +25,14 @@ export default function About() {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeUp}
           >
-            <picture>
-              <source srcSet="/headshot.webp" type="image/webp" />
-              <img
-                src={profile.headshot}
-                alt={`Portrait of ${profile.name}`}
-                width="900"
-                height="1350"
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
+            <img
+              src={profile.headshot}
+              alt={`Portrait of ${profile.name}`}
+              width="1467"
+              height="2200"
+              loading="lazy"
+              decoding="async"
+            />
             <div className={styles.imageBorder} aria-hidden="true" />
           </m.div>
 
