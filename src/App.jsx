@@ -23,9 +23,9 @@ export default function App() {
         <Navbar />
         <main id="main-content" tabIndex="-1">
           <Hero />
+          <About />
           <Projects />
           <Experience />
-          <About />
           <Contact />
         </main>
         <Footer />

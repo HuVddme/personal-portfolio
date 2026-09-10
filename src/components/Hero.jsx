@@ -1,13 +1,16 @@
 import * as m from "framer-motion/m";
-import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
-import { profile, projects } from "../data/portfolio.js";
+import { FiArrowUpRight, FiPause, FiPlay } from "react-icons/fi";
+import { profile } from "../data/portfolio.js";
+import useHeroTyping from "../hooks/useHeroTyping.js";
 import { fadeUp, stagger } from "../motion.js";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
-  const featuredProject = projects[0];
+  const typing = useHeroTyping(profile.name, profile.roles);
   const scrollTo = (id) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({
+      behavior: typing.reducedMotion ? "instant" : "smooth",
+    });
 
   return (
     <section id="home" className={styles.hero}>
@@ -27,8 +30,41 @@ export default function Hero() {
         </m.p>
 
         <m.h1 className={styles.name} variants={fadeUp}>
-          {profile.name}
+          <span className={styles.screenReaderOnly}>{profile.name}</span>
+          <span className={styles.typingStack} aria-hidden="true">
+            <span className={styles.reserve}>{profile.name}</span>
+            <span>
+              {typing.name}
+              {typing.naming && <span className={styles.cursor} />}
+            </span>
+          </span>
         </m.h1>
+
+        <m.div className={styles.roleRow} variants={fadeUp}>
+          <p className={styles.role}>
+            <span className={styles.screenReaderOnly}>{profile.roles.join(". ")}</span>
+            <span className={styles.typingStack} aria-hidden="true">
+              {profile.roles.map((role) => (
+                <span key={role} className={styles.reserve}>{role}</span>
+              ))}
+              <span>
+                {typing.role}
+                {typing.animated && !typing.naming && <span className={styles.cursor} />}
+              </span>
+            </span>
+          </p>
+          {typing.reducedMotion === false && (
+            <button
+              type="button"
+              className={styles.typingToggle}
+              onClick={typing.togglePaused}
+              aria-label={typing.paused ? "Replay typing animation" : "Pause typing animation"}
+              title={typing.paused ? "Replay typing animation" : "Pause typing animation"}
+            >
+              {typing.paused ? <FiPlay aria-hidden="true" /> : <FiPause aria-hidden="true" />}
+            </button>
+          )}
+        </m.div>
 
         <m.p className={styles.specialization} variants={fadeUp}>
           {profile.specialization}
@@ -61,20 +97,6 @@ export default function Hero() {
           </a>
         </m.div>
 
-        <m.a
-          className={styles.featured}
-          href={featuredProject.href}
-          target="_blank"
-          rel="noreferrer"
-          variants={fadeUp}
-        >
-          <span className={styles.featuredLabel}>Featured project</span>
-          <span className={styles.featuredBody}>
-            <strong>{featuredProject.name}</strong>
-            <small>{featuredProject.tagline}</small>
-          </span>
-          <FiArrowRight aria-hidden="true" />
-        </m.a>
       </m.div>
     </section>
   );

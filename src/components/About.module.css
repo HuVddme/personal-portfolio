@@ -10,12 +10,9 @@
   max-width: 360px;
 }
 
-.imageWrap picture {
-  display: block;
-}
-
 .imageWrap img {
   width: 100%;
+  height: auto;
   border-radius: var(--radius);
   filter: grayscale(100%) contrast(1.05);
   transition: filter 0.4s ease, transform 0.4s ease;

@@ -48,11 +48,20 @@ export default function Experience() {
                   </div>
                   <span className={styles.period}>{item.period}</span>
                 </div>
+                {item.focus && <h4 className={styles.focus}>{item.focus}</h4>}
+                {item.summary && <p className={styles.summary}>{item.summary}</p>}
                 <ul className={styles.points}>
                   {item.points.map((point, i) => (
                     <li key={i}>{point}</li>
                   ))}
                 </ul>
+                {item.tech && (
+                  <ul className={styles.tech} aria-label={`${item.role} technologies`}>
+                    {item.tech.map((technology) => (
+                      <li key={technology}>{technology}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </m.li>
           ))}
