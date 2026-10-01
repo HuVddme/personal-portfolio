@@ -32,11 +32,24 @@ export const experiences = [
       "Developed and evaluated a multilingual audio-and-text pipeline to predict Mini-Mental State Examination (MMSE) scores, a 0–30 measure of cognitive function, from spoken responses. The research explores speech as a signal for cognitive screening and monitoring.",
     points: [
       "Combined five experimental cohorts from ADReSS, ADReSSo, ADReSS-M, and TAUKADIAL: approximately 659 labeled participants speaking English, Greek, and Mandarin, across different speaking tasks and recording conditions.",
-      "Evaluated XLM-RoBERTa, ModernBERT, and mmBERT on automatically generated transcripts alongside AST, SSAST, and WavLM audio representations. The strongest standalone text model, mmBERT, reached approximately 4.19 RMSE; the strongest audio-only models reached 5.47–5.56.",
-      "Compared weighted late, MLP, gated, uncertainty-aware, and embedding-level fusion. Uncertainty-aware fusion achieved approximately 4.04 RMSE, improving on standalone text by combining linguistic patterns with complementary speech acoustics.",
+      "In earlier experiments, evaluated XLM-RoBERTa, ModernBERT, and mmBERT on automatically generated transcripts alongside AST, SSAST, and WavLM audio representations. The strongest standalone text model, mmBERT, reached approximately 4.19 RMSE; the strongest audio-only models reached 5.47–5.56.",
+      "Compared weighted late, MLP, gated, uncertainty-aware, and embedding-level fusion. Earlier uncertainty-aware fusion experiments achieved approximately 4.04 RMSE, improving on standalone text by combining linguistic patterns with complementary speech acoustics.",
       "Used 5-fold speaker-level GroupKFold cross-validation to keep each participant's recordings within a single fold and prevent speaker leakage. Tuned label standardization, Smooth L1 loss, learning rates, audio augmentation, and regularization to improve robustness.",
     ],
     tech: ["Python", "PyTorch", "Hugging Face Transformers", "Torchaudio", "scikit-learn"],
+    poster: {
+      title: "Speech-Based Detection and Severity Assessment of Alzheimer's Disease",
+      authors: "Valentine Ezikeoha, Howard Prioleau, and Saurav K. Aryal, PhD",
+      affiliation: "AI4PC Lab · Institute for Human Centered Artificial Intelligence",
+      description:
+        "A visual overview of the SSAST, WavLM, and mmBERT audio-text pipeline, model comparisons, and multilingual error analysis.",
+      result:
+        "Poster result: combined-cohort fusion RMSE decreased from 3.66 to 2.91 after hyperparameter optimization.",
+      href: "/research/speech-based-alzheimers-detection-poster.pdf",
+      preview: "/research/speech-based-alzheimers-detection-poster.jpg",
+      downloadName: "Valentine-Ezikeoha-Speech-Based-Alzheimers-Detection-Poster.pdf",
+      format: "1-page PDF · 395 KB",
+    },
   },
   {
     role: "Software Engineer Intern",

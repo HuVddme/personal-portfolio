@@ -33,6 +33,8 @@ This runs ESLint, the portfolio-data tests, the browser bundle build, the server
 
 Profile, experience, project, navigation, and contact information live in `src/data/portfolio.js`. Project screenshots live in `public/projects/`.
 
+Research PDFs and their lightweight poster previews live in `public/research/`. Update the corresponding experience's `poster` fields in `src/data/portfolio.js` to change the title, authors, summary, results, or links. For a revised poster, replace the PDF and regenerate its preview, then update the displayed size and results. Keep the existing URL when replacing the same poster so shared links continue to work; use a new filename for a distinct publication. Label results from different experiments separately.
+
 ## Production
 
 The `main` branch deploys to [valentineezikeoha-portfolio.vercel.app](https://valentineezikeoha-portfolio.vercel.app/).

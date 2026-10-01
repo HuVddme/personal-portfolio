@@ -1,8 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { useReducedMotion } from "framer-motion";
 
+const subscribe = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
+
 export default function useHeroTyping(name, roles) {
-  const reducedMotion = useReducedMotion();
+  const hydrated = useSyncExternalStore(subscribe, clientSnapshot, serverSnapshot);
+  const motionPreference = useReducedMotion();
+  // Match server markup until hydration finishes, including the pause control.
+  const reducedMotion = hydrated ? motionPreference : null;
   const [frame, setFrame] = useState(null);
   const [paused, setPaused] = useState(false);
 
