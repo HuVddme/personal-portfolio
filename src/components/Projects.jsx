@@ -91,6 +91,16 @@ export default function Projects() {
                     <p className={styles.tagline}>{project.tagline}</p>
                   )}
                   <p className={styles.description}>{project.description}</p>
+                  {project.highlights?.length > 0 && (
+                    <details className={styles.projectDetails}>
+                      <summary aria-label={`What I built for ${project.name}`}>What I built</summary>
+                      <ul>
+                        {project.highlights.map((highlight) => (
+                          <li key={highlight}>{highlight}</li>
+                        ))}
+                      </ul>
+                    </details>
+                  )}
 
                   <ul
                     className={styles.tech}

@@ -120,6 +120,32 @@
   flex-grow: 1;
 }
 
+.projectDetails {
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.projectDetails summary {
+  padding: 0.8rem 0;
+  min-height: 44px;
+  cursor: pointer;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.projectDetails ul {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0 0 0.4rem 1.15rem;
+  line-height: 1.7;
+}
+
+.projectDetails li::marker {
+  color: var(--color-accent);
+}
+
 .tech {
   display: flex;
   flex-wrap: wrap;
